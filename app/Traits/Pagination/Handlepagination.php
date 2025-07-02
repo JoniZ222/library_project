@@ -4,7 +4,7 @@ namespace App\Traits\Pagination;
 
 use Illuminate\Http\Request;
 
-trait Handlepagination
+trait HandlePagination
 {
     public function getPaginationParams(Request $request)
     {
