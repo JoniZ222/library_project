@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 trait HandlePagination
 {
+    //get pagination params from request
     public function getPaginationParams(Request $request)
     {
         return [
@@ -13,6 +14,7 @@ trait HandlePagination
         ];
     }
 
+    //build pagination response
     protected function buildPaginationResponse($paginatedResults, array $filters = [], array $additionalData = [], string $datakey = "data")
     {
         return array_merge([
