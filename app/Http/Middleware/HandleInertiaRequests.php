@@ -37,24 +37,32 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        // Obtener una cita inspiradora aleatoria y separar el mensaje del autor
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
         return [
             ...parent::share($request),
+            // Nombre de la aplicación desde la configuración
             'name' => config('app.name'),
+            // Cita inspiradora con mensaje y autor
             'quote' => ['message' => trim($message), 'author' => trim($author)],
+            // Datos de autenticación del usuario actual
             'auth' => [
                 'user' => $request->user(),
             ],
+            // Configuración de Ziggy para rutas con la ubicación actual
             'ziggy' => fn(): array => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+            // Estado del sidebar basado en cookies (abierto por defecto si no hay cookie)
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
 
+            // URL base para archivos de almacenamiento
             'storageUrl' => asset('storage'),
         ];
 
+        // Mensajes flash de sesión para diferentes tipos de alertas
         return [
             'success' => $request->session()->get('success'),
             'error' => $request->session()->get('error'),
