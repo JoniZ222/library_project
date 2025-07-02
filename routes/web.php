@@ -13,3 +13,5 @@ require __DIR__ . '/catalog.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/librarian.php';
 require __DIR__ . '/reader-public.php';
+require __DIR__ . '/quick_create.php';
+require __DIR__ . '/reports.php';

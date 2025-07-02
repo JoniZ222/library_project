@@ -52,7 +52,6 @@ Route::middleware(['auth'])->group(function () {
     Route::match(['put', 'post'], '/authors/{id}/update', [AuthorsController::class, 'update'])->name('librarian.authors.update');
     Route::delete('/authors/{id}/destroy', [AuthorsController::class, 'destroy'])->name('librarian.authors.destroy');
 
-    require_once __DIR__ . '/quick_create.php';
 
     Route::match(['get', 'post'], '/inventory', [InventoryController::class, 'index'])->name('librarian.inventory');
     Route::get('/inventory/{id}/show', [InventoryController::class, 'show'])->name('librarian.inventory.show');
@@ -81,6 +80,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/books/history', function () {
         return Inertia::render('librarian/sections/history');
     })->name('librarian.books.history');
-
-    require_once __DIR__ . '/reports.php';
 });
